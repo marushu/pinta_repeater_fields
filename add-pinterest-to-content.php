@@ -167,28 +167,36 @@ function get_ba_image_content( $atts ) {
 	), $atts ) );
 
 	$post_id = get_the_ID();
+	$post_content = get_post( $post_id );
+	$post_title = esc_html( $post_content->post_title );
 
-	$child_field_count = intval( get_post_meta( $post_id, 'image_ba', true ) );
-	var_dump( $child_field_count );
+	$html = '';
 
+	$b_image_id = get_post_meta( $post_id, sprintf( 'image_ba_%d__b', $num ), true );
+	$before_image = wp_get_attachment_image_src( $b_image_id, 'medium' );
+	$before_image_tag = sprintf(
+		'<img src="%1$s" width="%2$d" height="%3$d" alt="%4$s" title="%4$s">',
+		esc_url( $before_image[0] ),
+		intval( $before_image[1] ),
+		intval( $before_image[2] ),
+		$post_title . ' 施工前_' . intval( $num + 1 )
+	);
 
-	for ( $i = 0; $i < $child_field_count; $i++ ){
-		$b_image_id = get_post_meta( $post_id, sprintf( 'image_ba_%d__b', $i ), true );
-		var_dump( $b_image_id );
+	$html .= $before_image_tag;
 
-		$before_image = wp_get_attachment_image_src( $b_image_id, 'medium' );
-		var_dump( $before_image );
-		$before_image_tag = sprintf(
-			'<img src="%1$s" width="%2$d" height="%3$d" alt="%4$s">',
-			esc_url( $before_image[0] ),
-			intval( $before_image[1] ),
-			intval( $before_image[2] ),
-			'テスト'
-		);
-		echo '<pre>';
-		print_r( $before_image_tag );
-		echo '</pre>' . "\n";
-	}
+	$a_image_id = get_post_meta( $post_id, sprintf( 'image_ba_%d__a', $num ), true );
+	$after_image = wp_get_attachment_image_src( $a_image_id, 'medium' );
+	$after_image_tag = sprintf(
+		'<img src="%1$s" width="%2$d" height="%3$d" alt="%4$s" title="%4$s">',
+		esc_url( $after_image[0] ),
+		intval( $after_image[1] ),
+		intval( $after_image[2] ),
+		$post_title . ' 施工後_' . intval( $num + 1 )
+	);
+
+	$html .= $after_image_tag;
+
+	return $html;
 
 }
 add_shortcode( 'ba_image', 'get_ba_image_content' );

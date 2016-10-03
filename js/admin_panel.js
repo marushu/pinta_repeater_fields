@@ -20,14 +20,10 @@
 
 	});
 
-	$('#acf-image_ba .ui-sortable').sortable( {
-		revert    : true,
-		connectWith  : ".sortable",
-		stop     : function(event,ui){
-			//write ur function here
-		}
-	});
-
+	/**
+	 * Sortable shortcode.
+	 * @type {JQuery|HTMLElement}
+	 */
 	var targetElm = $( '#acf-image_ba tbody' );
 	$(targetElm).attr( 'id', 'ba_sort' );
 
@@ -52,6 +48,7 @@
 			}
 
 		}
+
 	});
 
 

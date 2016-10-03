@@ -35,6 +35,23 @@ function add_pinterest_script() {
 }
 add_action( 'wp_enqueue_scripts', 'add_pinterest_script' );
 
+/**
+ * Add js file to admin panel.
+ */
+function add_to_admin_script() {
+
+	wp_enqueue_script(
+		'renovegga-works-script',
+		//get_template_directory_uri() . '/js/admin_panel.js',
+		plugins_url( '/js/admin_panel.js' , __FILE__ ),
+		array('jquery'),
+		'',
+		true
+	);
+
+}
+add_action( 'admin_enqueue_scripts', 'add_to_admin_script' );
+
 function addHidden()
 {
 	$path = plugin_dir_url( __FILE__ );
@@ -148,19 +165,6 @@ function get_ba_image_content( $atts ) {
 	extract( shortcode_atts( array(
 		'num'      => 0,
 	), $atts ) );
-
-	//echo '<pre>';
-	//print_r( get_the_ID() );
-	//echo '</pre>' . "\n";
-//
-	//$args = array(
-	//	'post_type'       => 'works',
-	//	'posts_per_page'  => 1,
-	//);
-	//$works_posts = get_posts( $args );
-	//echo '<pre>';
-	//print_r( $works_posts );
-	//echo '</pre>' . "\n";
 
 	$post_id = get_the_ID();
 

@@ -1,0 +1,82 @@
+#innerBody {
+	padding: 10px;
+}
+
+#tb_input td  {
+	padding: 10px;
+}
+
+#errText {
+	color: #FF0000;
+	font-size: 0.8em;
+}
+
+#ui {
+	text-align: center;
+}
+
+#cancel {
+	padding: 10px;
+}
+
+.headline {
+	font-weight: bold;
+	border-bottom: 1px dotted #ccc;
+}
+
+dd {
+	margin-left: 0;
+}
+
+dd label {
+	cursor: pointer;
+	margin-right: 2em;
+}
+
+.p_form {
+	padding: 10px;
+	display: inline-block;
+	width:100%;
+	box-sizing:border-box;
+	font-size: 1em;
+}
+
+input[type="button"] {
+	background: none repeat scroll 0 0 #CCC;
+	border: medium none;
+	cursor: pointer;
+	display: inline-block;
+	padding: 7px;
+	text-transform: uppercase;
+	color: #fff;
+	transition: all 0.2s ease;
+}
+
+#submit {
+	background-color: #4dabff;
+	width: 55%;
+	padding: 10px;
+}
+
+#submit:hover,
+#cancel:hover {
+	transform: scale(1.2);
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
+}
+
+#cancel {
+	background-color: #f9584b;
+	width: 30%;
+}
+
+.pin_w_400_240 {
+	min-width: 400px;
+}
+
+.pin_w_900_120 {
+	min-width: 900px;
+}
+
+.w_pin_1200_500 {
+	min-width: 100%;
+}

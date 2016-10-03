@@ -44,7 +44,7 @@ function add_to_admin_script() {
 		'renovegga-works-script',
 		//get_template_directory_uri() . '/js/admin_panel.js',
 		plugins_url( '/js/admin_panel.js' , __FILE__ ),
-		array('jquery'),
+		array('jquery', 'jquery-ui-sortable'),
 		'',
 		true
 	);

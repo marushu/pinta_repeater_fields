@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:     Add Pinterest To Content
+ * Plugin Name:     Add Pinterest To Content and Before After images
  * Plugin URI:      https://private.hibou-web.com
- * Description:     Add Pins and Boards to content. :)
+ * Description:     Add Pins and Boards to content and Before-After images to the content. :)
  * Author:          Hibou
  * Author URI:      https://private.hibou-web.com
  * Text Domain:     add-pinterest-to-content
@@ -42,7 +42,6 @@ function add_to_admin_script() {
 
 	wp_enqueue_script(
 		'renovegga-works-script',
-		//get_template_directory_uri() . '/js/admin_panel.js',
 		plugins_url( '/js/admin_panel.js' , __FILE__ ),
 		array('jquery', 'jquery-ui-sortable'),
 		'',
@@ -52,33 +51,39 @@ function add_to_admin_script() {
 }
 add_action( 'admin_enqueue_scripts', 'add_to_admin_script' );
 
-function addHidden()
-{
+/**
+ * Get plugin directory for js.
+ */
+function addHidden() {
+
 	$path = plugin_dir_url( __FILE__ );
 	echo '<input type="hidden" id="plugin_directory" value='."{$path}".' />';
+
 }
 add_action('admin_menu', 'addHidden');
 
 
 
-function register_button($buttons)
-{
+function register_button( $buttons ) {
 	$buttons[] = 'input_text';
 	return $buttons;
 }
-add_filter('mce_buttons', 'register_button');
+add_filter( 'mce_buttons', 'register_button' );
 
-function mce_plugin($plugin_array)
-{
-	$plugin_array['custom_button_script'] = plugins_url( 'js/editor_plugin.js' , __FILE__ );
+function mce_plugin( $plugin_array ) {
+
+	$plugin_array[ 'custom_button_script' ] = plugins_url( 'js/editor_plugin.js' , __FILE__ );
 	return $plugin_array;
-}
-add_filter('mce_external_plugins', 'mce_plugin');
 
+}
+add_filter( 'mce_external_plugins', 'mce_plugin' );
 
 
 /**
- * Connet shortcode
+ * Add Pinterest Borad and Pins at visual editor. :)
+ * @param $atts
+ *
+ * @return string
  */
 function get_pinterest_pins_boards( $atts ) {
 	global $post;
@@ -159,6 +164,12 @@ function get_pinterest_pins_boards( $atts ) {
 add_shortcode( 'pin', 'get_pinterest_pins_boards' );
 
 
+/**
+ * Add before after images at placed shortcode.
+ * @param $atts
+ *
+ * @return string
+ */
 function get_ba_image_content( $atts ) {
 
 	global $post;

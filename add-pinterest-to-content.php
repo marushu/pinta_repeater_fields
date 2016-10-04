@@ -165,6 +165,11 @@ add_shortcode( 'pin', 'get_pinterest_pins_boards' );
 
 
 /**
+ * Add image size.
+ */
+add_image_size( 'thumb_509_372_second', 509, 372, true );
+
+/**
  * Add before after images at placed shortcode.
  * @param $atts
  *
@@ -181,12 +186,13 @@ function get_ba_image_content( $atts ) {
 	$post_content = get_post( $post_id );
 	$post_title = esc_html( $post_content->post_title );
 
-	$html = '';
+	$html  = '';
+	$html .= '<div class="comarison_image">';
 
 	$b_image_id = get_post_meta( $post_id, sprintf( 'image_ba_%d__b', $num ), true );
-	$before_image = wp_get_attachment_image_src( $b_image_id, 'medium' );
+	$before_image = wp_get_attachment_image_src( $b_image_id, 'thumb_509_372_second' );
 	$before_image_tag = sprintf(
-		'<img src="%1$s" width="%2$d" height="%3$d" alt="%4$s" title="%4$s">',
+		'<img class="comparison" src="%1$s" width="%2$d" height="%3$d" alt="%4$s" title="%4$s">',
 		esc_url( $before_image[0] ),
 		intval( $before_image[1] ),
 		intval( $before_image[2] ),
@@ -196,9 +202,9 @@ function get_ba_image_content( $atts ) {
 	$html .= $before_image_tag;
 
 	$a_image_id = get_post_meta( $post_id, sprintf( 'image_ba_%d__a', $num ), true );
-	$after_image = wp_get_attachment_image_src( $a_image_id, 'medium' );
+	$after_image = wp_get_attachment_image_src( $a_image_id, 'thumb_509_372_second' );
 	$after_image_tag = sprintf(
-		'<img src="%1$s" width="%2$d" height="%3$d" alt="%4$s" title="%4$s">',
+		'<img class="comparison" src="%1$s" width="%2$d" height="%3$d" alt="%4$s" title="%4$s">',
 		esc_url( $after_image[0] ),
 		intval( $after_image[1] ),
 		intval( $after_image[2] ),
@@ -206,6 +212,7 @@ function get_ba_image_content( $atts ) {
 	);
 
 	$html .= $after_image_tag;
+	$html .= '</div>';
 
 	return $html;
 

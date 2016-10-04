@@ -51,5 +51,44 @@
 
 	});
 
+	$( '#acf-image_ba .acf-button-remove' ).on( 'click', function() {
+
+		console.log( 'クリック' );
+		var trCount = $( '#ba_sort tr' ).not( '.row-clone' ).length;
+		console.log( trCount );
+
+		for ( i = 0; i <= ( trCount - 1 ); i++ ) {
+
+			var updateTarget = $( '#ba_sort tr' ).eq( i ).find( 'td:nth-child(4) input[type="text"]' );
+			console.log( updateTarget );
+
+			var addValue = '[ba_image num="' + ( i ) + '"]';
+			console.log( addValue );
+
+			$( updateTarget ).attr({
+				'value': addValue
+			});
+
+		}
+
+	} );
+
+	function reflesh() {
+
+		var trCount = $( '#ba_sort tr' ).not( '.row-clone' ).length;
+		console.log( trCount );
+
+		for ( i = 0; i <= trCount; i++ ) {
+
+			var updateTarget = $( '#ba_sort tr' ).eq( i -1 ).find( 'td:nth-child(4) input[type="text"]' );
+			var addValue = '[ba_image num="' + ( i - 1 ) + '"]';
+			$( updateTarget ).attr({
+				'value': addValue
+			});
+
+		}
+
+	}
+
 
 })( jQuery );

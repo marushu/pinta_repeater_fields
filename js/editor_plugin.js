@@ -1,7 +1,5 @@
 (function($){
 
-		var path = $('#plugin_directory').val();
-
 		tinymce.create(
 			'tinymce.plugins.AddPinterest',
 			{
@@ -11,7 +9,7 @@
 						'add_ba_image',
 						{
 							title: 'Set Before & After image content.',
-							image: path + '/js/images/cl.gif',
+							image: url + '/images/cl.gif',
 							cmd: 'add_ba_image_cmd'
 						}
 					);
@@ -35,7 +33,7 @@
 						'input_text',
 						{
 							title: 'Set Pinterest Pins and Boards.',
-							image: path + '/js/images/Pinterest-badge-20px.png',
+							image: url + '/images/Pinterest-badge-20px.png',
 							cmd: 'input_text_cmd'
 						}
 					);
@@ -44,7 +42,7 @@
 					{
 						ed.windowManager.open(
 							{
-								url: path + 'view.html',
+								url: url + '/view.html',
 								width: 500,
 								height: 450,
 								title: 'Pins and Boards settings'

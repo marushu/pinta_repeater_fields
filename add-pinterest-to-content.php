@@ -35,19 +35,6 @@ function add_pinterest_script() {
 }
 add_action( 'wp_enqueue_scripts', 'add_pinterest_script' );
 
-/**
- * Get plugin directory for js.
- */
-function addHidden() {
-
-	$path = plugin_dir_url( __FILE__ );
-	echo '<input type="hidden" id="plugin_directory" value='."{$path}".' />';
-
-}
-add_action('admin_menu', 'addHidden');
-
-
-
 function register_button( $buttons ) {
 	$buttons[] = 'input_text';
 	return $buttons;
